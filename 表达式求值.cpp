@@ -1,57 +1,65 @@
-#include <iostream>
+#include <iostream> 
 #include <cstring>
 #include <cstdlib>
 using namespace std;
-int factor_vlue();
-int term_vlue();
-int expression_vlue();
+int factor_value();
+int term_value();
+int expression_value(); 
+
 int main()
 {
-	cout<<expression_vlue()<<endl;
+	cout<<expression_value()<<endl;
+	system("pause");
 	return 0;
-}
-int expression_vlue()
+} 
+
+
+int expression_value()
 {
-	int result=term_vlue();
+	int result=term_value();
 	while(true){
 		char op=cin.peek();
-		if(op=='+'||op=='-'){
+		if(op=='+' || op=='-')
+		{
 			cin.get();
-			int vlue=term_vlue();
+			int value=term_value();
 			if(op=='+')
-				result+=vlue;
+				result+=value;
 			else
-				result-=vlue;
+				result-=value;
 		}else
 			break;
 	}
 	return result;
 }
-int term_vlue()
+int term_value()
 {
-	int result=factor_vlue();
-	while(true){
+	int result=factor_value();
+	while(true)
+	{
 		char op=cin.peek();
-		if(op=='*'||op=='/'){
+		if(op=='*'||op=='/')
+		{
 			cin.get();
-			int vlue=factor_vlue();
+			int value=factor_value();
 			if(op=='*')
-				result*=vlue;
+				result*=value;
 			else
-				result/=vlue;
+				result/=value;
 		}else
 			break;
 	}
 	return result;
 }
-int factor_vlue()
+
+int factor_value()
 {
-	int result=0;
+	int result=0; 
 	char c=cin.peek();
 	if(c=='('){
 		cin.get();
-		result=expression_vlue();
-		cin.get();
+		result=expression_value();
+		cin.get();		
 	}else{
 		while(isdigit(c)){
 			result=10*result+c-'0';
